@@ -1,77 +1,107 @@
-var initModal = function () {
+(function (window, document) {
 
-    var modal = $('.modal.remote:not([data-initialized])');
+    let toggles = Array.from(
+        document.querySelectorAll('[data-toggle="modal"]')
+    );
 
-    var loading = '<div class="modal-loading"><div class="active loader large"></div></div>';
+    let loading = '<div class="modal-loading"><div class="active loader large"></div></div>';
 
-    // Loading state
-    modal.on('loading', function() {
-        $(this).find('.modal-content').append(loading);
-    });
+    toggles.forEach(function (toggle) {
 
-    // Clear remote modals when closed.
-    modal.on('hidden.bs.modal', function () {
+        toggle.addEventListener('click', function (event) {
 
-        $(this).removeData('bs.modal');
+            event.preventDefault();
 
-        $(this).find('.modal-content').html(loading);
-    });
+            /**
+             * Open a modal with the loading content.
+             */
+            let modal = new tingle.modal({
+                closeMethods: ['overlay', 'button', 'escape'],
+                closeLabel: "Close",
+                onOpen: function () {
+                    console.log('modal open');
+                },
+                onClose: function () {
+                    console.log('modal closed');
+                },
+            });
 
-    // Show loader for remote modals.
-    modal.on('show.bs.modal', function () {
-        $(this).find('.modal-content').html(loading);
-    });
+            /**
+             * Open the modal and set loading.
+             */
+            modal.open();
 
-    // Handle ajax links in modals.
-    modal.on('click', 'a.ajax, .pagination a', function (e) {
+            modal.setContent(loading);
 
-        e.preventDefault();
+            /**
+             * Send the HTTP request out.
+             * @type {XMLHttpRequest}
+             */
+            let request = new XMLHttpRequest();
 
-        var wrapper = $(this).closest('.modal-content');
+            request.open('GET', event.target.href, true);
+            request.setRequestHeader('Content-Type', 'text/html');
 
-        wrapper.append(loading);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4) {
+                    modal.setContent(request.response);
+                }
+            };
 
-        $.get($(this).attr('href'), function (html) {
-            wrapper.html(html);
+            request.send();
         });
     });
 
-    // Handle ajax forms in modals.
-    modal.on('submit', 'form.ajax', function (e) {
+    // // Loading state
+    // modal.on('loading', function() {
+    //     $(this).find('.modal-content').append(loading);
+    // });
+    //
+    // // Clear remote modals when closed.
+    // modal.on('hidden.bs.modal', function () {
+    //
+    //     $(this).removeData('bs.modal');
+    //
+    //     $(this).find('.modal-content').html(loading);
+    // });
+    //
+    // // Show loader for remote modals.
+    // modal.on('show.bs.modal', function () {
+    //     $(this).find('.modal-content').html(loading);
+    // });
+    //
+    // // Handle ajax links in modals.
+    // modal.on('click', 'a.ajax, .pagination a', function (e) {
+    //
+    //     e.preventDefault();
+    //
+    //     var wrapper = $(this).closest('.modal-content');
+    //
+    //     wrapper.append(loading);
+    //
+    //     $.get($(this).attr('href'), function (html) {
+    //         wrapper.html(html);
+    //     });
+    // });
+    //
+    // // Handle ajax forms in modals.
+    // modal.on('submit', 'form.ajax', function (e) {
+    //
+    //     e.preventDefault();
+    //
+    //     var wrapper = $(this).closest('.modal-content');
+    //
+    //     wrapper.append(loading);
+    //
+    //     if ($(this).attr('method') == 'GET') {
+    //         $.get($(this).attr('action'), $(this).serializeArray(), function (html) {
+    //             wrapper.html(html);
+    //         });
+    //     } else {
+    //         $.post($(this).attr('action'), $(this).serializeArray(), function (html) {
+    //             wrapper.html(html);
+    //         });
+    //     }
+    // });
 
-        e.preventDefault();
-
-        var wrapper = $(this).closest('.modal-content');
-
-        wrapper.append(loading);
-
-        if ($(this).attr('method') == 'GET') {
-            $.get($(this).attr('action'), $(this).serializeArray(), function (html) {
-                wrapper.html(html);
-            });
-        } else {
-            $.post($(this).attr('action'), $(this).serializeArray(), function (html) {
-                wrapper.html(html);
-            });
-        }
-    });
-
-    // Mark as initialized.
-    modal.attr('data-initialized', '');
-};
-
-$(document).ready(function () {
-    initModal();
-});
-
-$(document).ajaxComplete(function () {
-    initModal();
-});
-
-$(document).on('show.bs.modal', '.modal', function () {
-    var zIndex = 1040 + (10 * $('.modal:visible').length);
-    $(this).css('z-index', zIndex);
-    setTimeout(function() {
-        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-    }, 0);
-});
+})(window, document);
