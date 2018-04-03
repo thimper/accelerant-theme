@@ -44,7 +44,7 @@
 
             request.onreadystatechange = function () {
                 if (request.readyState == 4) {
-                    modal.setContent(request.response);
+                    modal.setContent(request.responseText);
                 }
             };
 
