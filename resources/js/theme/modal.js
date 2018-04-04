@@ -87,24 +87,6 @@
         });
     });
 
-    // // Loading state
-    // modal.on('loading', function() {
-    //     $(this).find('.modal-content').append(loading);
-    // });
-    //
-    // // Clear remote modals when closed.
-    // modal.on('hidden.bs.modal', function () {
-    //
-    //     $(this).removeData('bs.modal');
-    //
-    //     $(this).find('.modal-content').html(loading);
-    // });
-    //
-    // // Show loader for remote modals.
-    // modal.on('show.bs.modal', function () {
-    //     $(this).find('.modal-content').html(loading);
-    // });
-    //
     // // Handle ajax links in modals.
     // modal.on('click', 'a.ajax, .pagination a', function (e) {
     //
