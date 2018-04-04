@@ -35,20 +35,55 @@
 
             /**
              * Send the HTTP request out.
-             * @type {XMLHttpRequest}
              */
-            let request = new XMLHttpRequest();
+            fetch(event.target.href, {credentials: 'same-origin'})
+                .then(function (response) {
+                    return response.text();
+                }).then(function (data) {
 
-            request.open('GET', event.target.href, true);
-            request.setRequestHeader('Content-Type', 'text/html');
+                /**
+                 * Create a fragment to work with.
+                 * @type {Document}
+                 */
+                let dom = new DOMParser().parseFromString(data, 'text/html'),
+                    fragment = document.createDocumentFragment(),
+                    childNodes = dom.body.childNodes;
 
-            request.onreadystatechange = function () {
-                if (request.readyState == 4) {
-                    modal.setContent(request.responseText);
+                while (childNodes.length) fragment.appendChild(childNodes[0]);
+
+                /**
+                 * Append scripts to fragment
+                 * so they are executed.
+                 * @type {NodeList}
+                 */
+                let scripts = fragment.querySelectorAll('script'),
+                    script, fixed, i, length;
+
+                for (i = 0, length = scripts.length; i < length; i++) {
+
+                    script = scripts[i];
+
+                    fixed = document.createElement('script');
+                    fixed.type = script.type;
+
+                    // Put the script or src
+                    if (script.innerHTML) {
+                        fixed.innerHTML = script.innerHTML;
+                    } else {
+                        fixed.src = script.src;
+                    }
+
+                    fixed.async = false;
+
+                    script.parentNode.replaceChild(fixed, script);
                 }
-            };
 
-            request.send();
+                modal.setContent('');
+                modal.modalBoxContent.appendChild(fragment);
+
+            }).catch(function (error) {
+                alert(error);
+            });
         });
     });
 
