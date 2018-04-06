@@ -6,6 +6,90 @@
 
     let loading = '<div class="modal-loading"><div class="active loader large"></div></div>';
 
+    /**
+     * Pass HTML and return a fragment
+     * with executed script in the document.
+     * @param data
+     * @param modal
+     * @return fragment
+     */
+    function executeScripts(data, modal) {
+
+        /**
+         * Create a fragment to work with.
+         * @type {Document}
+         */
+        let dom = new DOMParser().parseFromString('<div>' + data + '</div>', 'text/html'),
+            fragment = document.createDocumentFragment(),
+            childNodes = dom.body.childNodes;
+
+        while (childNodes.length) fragment.appendChild(childNodes[0]);
+
+        /**
+         * Append scripts to fragment
+         * so they are executed.
+         * @type {NodeList}
+         */
+        let scripts = fragment.querySelectorAll('script'),
+            script, fixed, i, length;
+
+        for (i = 0, length = scripts.length; i < length; i++) {
+
+            script = scripts[i];
+
+            fixed = document.createElement('script');
+            fixed.type = script.type;
+
+            // Put the script or src
+            if (script.innerHTML) {
+                fixed.innerHTML = script.innerHTML;
+            } else {
+                fixed.src = script.src;
+            }
+
+            fixed.async = false;
+
+            script.parentNode.replaceChild(fixed, script);
+        }
+
+        // Handle ajax links within modal.
+        let ajax = Array.from(
+            fragment.querySelectorAll('a.ajax, .pagination a')
+        );
+
+        ajax.forEach(function (event) {
+
+            event.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+                modal.setContent(loading);
+
+                /**
+                 * Send the HTTP request out.
+                 */
+                fetch(event.target.href, {credentials: 'same-origin'})
+                    .then(function (response) {
+                        return response.text();
+                    }).then(function (data) {
+
+                    let test = executeScripts(data, modal);
+
+                    modal.setContent('');
+                    modal.modalBoxContent.appendChild(test);
+
+                }).catch(function (error) {
+                    alert(error);
+                });
+            });
+        });
+
+        return fragment;
+    }
+
+    /**
+     * Initialize the modal toggles.
+     */
     toggles.forEach(function (toggle) {
 
         toggle.addEventListener('click', function (event) {
@@ -17,13 +101,8 @@
              */
             let modal = new tingle.modal({
                 closeMethods: ['overlay', 'button', 'escape'],
-                closeLabel: "Close",
-                onOpen: function () {
-                    console.log('modal open');
-                },
-                onClose: function () {
-                    console.log('modal closed');
-                },
+                closeLabel: 'Close',
+                cssClass: ['modal'],
             });
 
             /**
@@ -41,42 +120,7 @@
                     return response.text();
                 }).then(function (data) {
 
-                /**
-                 * Create a fragment to work with.
-                 * @type {Document}
-                 */
-                let dom = new DOMParser().parseFromString(data, 'text/html'),
-                    fragment = document.createDocumentFragment(),
-                    childNodes = dom.body.childNodes;
-
-                while (childNodes.length) fragment.appendChild(childNodes[0]);
-
-                /**
-                 * Append scripts to fragment
-                 * so they are executed.
-                 * @type {NodeList}
-                 */
-                let scripts = fragment.querySelectorAll('script'),
-                    script, fixed, i, length;
-
-                for (i = 0, length = scripts.length; i < length; i++) {
-
-                    script = scripts[i];
-
-                    fixed = document.createElement('script');
-                    fixed.type = script.type;
-
-                    // Put the script or src
-                    if (script.innerHTML) {
-                        fixed.innerHTML = script.innerHTML;
-                    } else {
-                        fixed.src = script.src;
-                    }
-
-                    fixed.async = false;
-
-                    script.parentNode.replaceChild(fixed, script);
-                }
+                let fragment = executeScripts(data, modal);
 
                 modal.setContent('');
                 modal.modalBoxContent.appendChild(fragment);
@@ -87,19 +131,6 @@
         });
     });
 
-    // // Handle ajax links in modals.
-    // modal.on('click', 'a.ajax, .pagination a', function (e) {
-    //
-    //     e.preventDefault();
-    //
-    //     var wrapper = $(this).closest('.modal-content');
-    //
-    //     wrapper.append(loading);
-    //
-    //     $.get($(this).attr('href'), function (html) {
-    //         wrapper.html(html);
-    //     });
-    // });
     //
     // // Handle ajax forms in modals.
     // modal.on('submit', 'form.ajax', function (e) {
