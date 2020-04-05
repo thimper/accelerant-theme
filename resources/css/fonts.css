@@ -50,7 +50,6 @@
 }
 
 .filetypes.flip {
-  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   -webkit-filter: FlipH;
           filter: FlipH;
@@ -58,7 +57,6 @@
 }
 
 .filetypes.flipv {
-  -webkit-transform: scaleY(-1);
   transform: scaleY(-1);
   -webkit-filter: FlipV;
           filter: FlipV;
@@ -66,17 +64,14 @@
 }
 
 .filetypes.rotate90 {
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .filetypes.rotate180 {
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .filetypes.rotate270 {
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
@@ -624,16 +619,13 @@
 }
 @keyframes pulse {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    transform: scale(1.1);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 .pulse {
@@ -655,17 +647,13 @@
 }
 @keyframes rotateIn {
   0% {
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-    -webkit-transform: rotate(-200deg);
-            transform: rotate(-200deg);
+    transform-origin: center center;
+    transform: rotate(-200deg);
     opacity: 0;
   }
   100% {
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform-origin: center center;
+    transform: rotate(0);
     opacity: 1;
   }
 }
@@ -687,16 +675,13 @@
 }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   40% {
-    -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
   60% {
-    -webkit-transform: translateY(-15px);
-            transform: translateY(-15px);
+    transform: translateY(-15px);
   }
 }
 .bounce {
@@ -726,28 +711,22 @@
 }
 @keyframes swing {
   20% {
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
+    transform: rotate(15deg);
   }
   40% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
+    transform: rotate(-10deg);
   }
   60% {
-    -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
   80% {
-    -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
   100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 .swing {
-  -webkit-transform-origin: top center;
   transform-origin: top center;
   -webkit-animation-name: swing;
   animation-name: swing;
@@ -772,24 +751,19 @@
 }
 @keyframes tada {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   10%, 20% {
-    -webkit-transform: scale(0.9) rotate(-3deg);
-            transform: scale(0.9) rotate(-3deg);
+    transform: scale(0.9) rotate(-3deg);
   }
   30%, 50%, 70%, 90% {
-    -webkit-transform: scale(1.1) rotate(3deg);
-            transform: scale(1.1) rotate(3deg);
+    transform: scale(1.1) rotate(3deg);
   }
   40%, 60%, 80% {
-    -webkit-transform: scale(1.1) rotate(-3deg);
-            transform: scale(1.1) rotate(-3deg);
+    transform: scale(1.1) rotate(-3deg);
   }
   100% {
-    -webkit-transform: scale(1) rotate(0);
-            transform: scale(1) rotate(0);
+    transform: scale(1) rotate(0);
   }
 }
 .tada {
@@ -838,7 +812,6 @@
 }
 
 .glyphicons.flip {
-  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   -webkit-filter: FlipH;
           filter: FlipH;
@@ -846,7 +819,6 @@
 }
 
 .glyphicons.flipv {
-  -webkit-transform: scaleY(-1);
   transform: scaleY(-1);
   -webkit-filter: FlipV;
           filter: FlipV;
@@ -854,17 +826,14 @@
 }
 
 .glyphicons.rotate90 {
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .glyphicons.rotate180 {
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .glyphicons.rotate270 {
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
@@ -3332,16 +3301,13 @@
 }
 @keyframes pulse {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    transform: scale(1.1);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 .pulse {
@@ -3363,17 +3329,13 @@
 }
 @keyframes rotateIn {
   0% {
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-    -webkit-transform: rotate(-200deg);
-            transform: rotate(-200deg);
+    transform-origin: center center;
+    transform: rotate(-200deg);
     opacity: 0;
   }
   100% {
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform-origin: center center;
+    transform: rotate(0);
     opacity: 1;
   }
 }
@@ -3395,16 +3357,13 @@
 }
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   40% {
-    -webkit-transform: translateY(-30px);
-            transform: translateY(-30px);
+    transform: translateY(-30px);
   }
   60% {
-    -webkit-transform: translateY(-15px);
-            transform: translateY(-15px);
+    transform: translateY(-15px);
   }
 }
 .bounce {
@@ -3434,28 +3393,22 @@
 }
 @keyframes swing {
   20% {
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
+    transform: rotate(15deg);
   }
   40% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
+    transform: rotate(-10deg);
   }
   60% {
-    -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
   80% {
-    -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
   100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 .swing {
-  -webkit-transform-origin: top center;
   transform-origin: top center;
   -webkit-animation-name: swing;
   animation-name: swing;
@@ -3480,24 +3433,19 @@
 }
 @keyframes tada {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   10%, 20% {
-    -webkit-transform: scale(0.9) rotate(-3deg);
-            transform: scale(0.9) rotate(-3deg);
+    transform: scale(0.9) rotate(-3deg);
   }
   30%, 50%, 70%, 90% {
-    -webkit-transform: scale(1.1) rotate(3deg);
-            transform: scale(1.1) rotate(3deg);
+    transform: scale(1.1) rotate(3deg);
   }
   40%, 60%, 80% {
-    -webkit-transform: scale(1.1) rotate(-3deg);
-            transform: scale(1.1) rotate(-3deg);
+    transform: scale(1.1) rotate(-3deg);
   }
   100% {
-    -webkit-transform: scale(1) rotate(0);
-            transform: scale(1) rotate(0);
+    transform: scale(1) rotate(0);
   }
 }
 .tada {
@@ -3644,51 +3592,42 @@
 
 @-webkit-keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
-  -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(1, -1);
   transform: scale(1, -1);
 }
 

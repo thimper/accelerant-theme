@@ -553,6 +553,16 @@ body.display--compact #sidebar ul li a {
     padding-top: 5px;
     padding-bottom: 5px;
   }
+  body.display--compact #menu {
+    left: 40px;
+    width: 135px;
+  }
+  body.display--compact #sidebar, body.display--compact #topbar .topbar-left {
+    width: 40px;
+  }
+  body.display--compact #main {
+    margin-left: 176px;
+  }
   body.display--compact .custom-select, body.display--compact select.form-control:not([size]):not([multiple]) {
     height: calc(2.3rem - 2px);
   }
@@ -578,6 +588,10 @@ body.display--compact #topbar .button-menu .button-menu-mobile {
   }
   body.display--compact #topbar .nav > li > a {
     display: block;
+  }
+  body.display--compact #topbar .nav > li.shortcut > a {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
   body.display--compact #sidebar,
 body.display--compact #menu {
@@ -636,7 +650,6 @@ body.display--compact #menu {
   width: 100px;
   height: 100%;
   opacity: 1;
-  -webkit-transform: rotate(3deg) translate(0px, -4px);
   transform: rotate(3deg) translate(0px, -4px);
 }
 
@@ -681,12 +694,10 @@ body.display--compact #menu {
 }
 @keyframes nprogress-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 .swal-title {
@@ -1214,9 +1225,7 @@ body.modal-open {
   overflow: hidden;
 }
 .modal.fade .modal-dialog {
-  transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 .modal .close {
   margin-top: 4px;
@@ -1280,7 +1289,6 @@ body.modal-open {
   display: none;
   position: absolute;
   text-align: center;
-  -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -1318,21 +1326,17 @@ body.modal-open {
 /* Active Animation */
 @-webkit-keyframes loader {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 @keyframes loader {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -1494,7 +1498,6 @@ body.modal-open {
   margin: 0em;
   left: 0em;
   top: 0em;
-  -webkit-transform: none;
   transform: none;
 }
 
@@ -2104,8 +2107,7 @@ body.modal-open {
     position: absolute;
     right: 10px;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   [dir=rtl] .choices__list--dropdown .choices__item--selectable {
     text-align: right;
